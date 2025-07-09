@@ -1,0 +1,359 @@
+<html>
+<head>
+  <title>NutZone</title>
+  <style>
+    :root {
+      --primary: #e09c3d; --secondary: #b3702d; --light: #fffbe7; --dark: #3e1f0d; --accent: #ffe066;
+      --body-font: 'Quicksand', sans-serif; --heading-font: 'Pacifico', cursive;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--body-font);
+      background: linear-gradient(120deg, var(--light), var(--accent));
+      color: var(--dark);
+      scroll-behavior: smooth;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+      background: #1e1e1e;
+      color: #f1f1f1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      padding: 12px 24px;
+      font-family: var(--heading-font);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    nav strong { font-size: 2em; color: var(--secondary); }
+    nav a {
+      margin: 0 8px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 1em;
+      padding: 6px 12px;
+      border-radius: 16px;
+    }
+
+    nav a:hover { background: var(--primary); color: #fff; }
+
+    body.dark-mode nav a { color: #f1f1f1; }
+    body.dark-mode nav a:hover { background: var(--accent); color: #1e1e1e; }
+    body.dark-mode nav strong { color: #ffe066; }
+
+    nav button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 32px 12px;
+      scroll-margin-top: 80px;
+    }
+
+    h1, h3, h4 {
+      font-size: 20px;
+      font-family: var(--heading-font);
+      color: var(--secondary);
+    }
+    h2{
+      color:brown;
+      text-align: center;
+      font-size: 40px;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .btn {
+      padding: 8px 18px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: var(--dark);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: var(--heading-font);
+      margin: 8px 8px 0 0;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      color: #fff;
+    }
+
+    body.dark-mode .btn {
+      background: linear-gradient(90deg, #444, #777);
+      color: #fff;
+    }
+
+    body.dark-mode .btn:hover {
+      background: linear-gradient(90deg, #888, #444);
+      color: #ffe066;
+    }
+
+    .two-col {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left-col, .right-col { flex: 1 1 320px; }
+
+    .grid-3, .grid-4 {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+
+    .card {
+      background: #fff;
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px #e09c3d20;
+      text-align: center;
+    }
+
+    .card img {
+      width: 10%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    #services .card {
+      padding: 10px;
+      font-size: 0.95em;
+    }
+
+    body.dark-mode .card {
+      background: #2d2d2d;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .testimonial {
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 8px;
+      margin-top: 14px;
+    }
+
+    .testimonial .card {
+      flex: 0 0 auto;
+      background: var(--light);
+      border: 1px solid var(--primary);
+    }
+
+    .testimonial .card img {
+      width: 180px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
+
+    body.dark-mode .testimonial .card {
+      background: #333;
+      border-color: #555;
+    }
+
+    footer {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 14px;
+      font-family: var(--heading-font);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 14px;
+      right: 14px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .back-to-top:hover { background: var(--secondary); }
+
+    form input, form button {
+      width: 90%;
+      padding: 7px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #e09c3d40;
+      font-size: 1em;
+    }
+
+    form button {
+      width: auto;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    body.dark-mode input, body.dark-mode form button {
+      background: #444;
+      color: #fff;
+      border: 1px solid #666;
+    }
+
+    .typewriter span {
+      border-right: .12em solid #e09c3d;
+      animation: typing 2.5s steps(30, end), blink .7s step-end infinite;
+      white-space: nowrap;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    @media (max-width: 700px) {
+      .two-col { flex-direction: column; }
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      nav { flex-direction: column; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <strong>NutZone</strong>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#features">Features</a>
+    <a href="#courses">Products</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <button id="theme-toggle" title="Toggle Dark Mode">🌓</button>
+  </div>
+</nav>
+
+<section id="home" class="two-col">
+  <div class="left-col">
+    <h1>Welcome to NutZone</h1>
+    <p class="typewriter"><span>Fresh, Organic & Premium Dry Fruits for Every Occasion.</span></p>
+    <p>NutZone offers a wide range of handpicked nuts and dry fruits sourced directly from organic farms. Elevate your health and taste with every bite.</p>
+    <center><button class="btn">Explore</button><button class="btn">View More</button></center>
+  </div>
+  <div class="right-col"><img src="nu5.webp" alt="Nuts" style="width:100%; height:100%; border-radius:20px;"></div>
+</section>
+
+<section id="about" class="two-col">
+  <div class="left-col"><img src="nu3.webp" alt="About" style="width:100%; border-radius:10px;"></div>
+  <div class="right-col">
+    <h2>About Us</h2>
+    <p>At NutZone, we believe that healthy snacking should never be boring. That's why we bring you the finest almonds, cashews, figs, and more – all organically grown, sustainably sourced, and packaged with care.</p>
+    <center><button class="btn">Learn More</button></center>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <center><div class="grid-3" style="width: 80%;height: 70%;">
+    <div class="card"><img src="webinar.webp" alt="Webinar"><h3>Health Webinars</h3><p>Nutrition & benefits of dry fruits from experts.</p></div>
+    <div class="card"><img src="ingredient.webp" alt="Recipe"><h3>Recipe Sharing</h3><p>Healthy dry fruit recipes by top chefs.</p></div>
+    <div class="card"><img src="organic.webp" alt="Organic"><h3>Organic Sourcing</h3><p>Natural sourcing & sustainable farming.</p></div>
+  </div></center>
+</section>
+
+<section id="features">
+  <h2>Features</h2>
+  <div class="grid-3">
+    <div class="card"><h3>Expert Curation</h3><p>Only the best quality nuts and dry fruits.</p></div>
+    <div class="card"><h3>Certified Organic</h3><p>Certified organic and chemical-free.</p></div>
+    <div class="card"><h3>Eco Packing</h3><p>Sustainable, eco-friendly packaging.</p></div>
+  </div>
+</section>
+
+<section id="courses">
+  <h2>Our Products</h2>
+  <div class="grid-3">
+    <div class="card"><img src="almon.webp" ><h4>California Almonds</h4><p>Crunchy, protein-rich, perfectly roasted.</p><button class="btn">Buy Now</button></div>
+    <div class="card"><img src="figs.webp" ><h4>Premium Figs</h4><p>Sweet, chewy,<br> sun-dried.<br></p><button class="btn">Buy Now</button></div>
+    <div class="card"><img src="dates.webp" ><h4>Organic Dates</h4><p>Rich in fiber, packed with energy.</p><button class="btn">Buy Now</button></div>
+    <div class="card"><img src="mund.webp" ><h4>Whole Cashews</h4><p>Buttery, smooth, nutrient-rich.</p><button class="btn">Buy Now</button></div>
+   <div class="card"><img src="pumpkin.webp" ><h4>Pumpkin Seed</h4><p>Crunchy, protein-packed, and rich in zinc.</p><button class="btn">Buy Now</button></div>
+   <div class="card"><img src="makhana.webp" ><h4>Makhana </h4><p>Light, crunchy, and perfect for healthy snacking.</p><button class="btn">Buy Now</button></div>
+  <div class="card"><img src="pista.webp" ><h4>Pista</h4><p>Salted & roasted pistachios full of flavor and health.</p><button class="btn">Buy Now</button></div>
+  <div class="card"><img src="raisin.webp" ><h4>Raisin</h4><p>Naturally sweet raisins rich in iron and antioxidants.</p><button class="btn">Buy Now</button></div>
+  <div class="card"><img src="walnut2.webp" ><h4>Walnut</h4><p>Brain-boosting walnuts packed with omega-3 fatty acids.</p><button class="btn">Buy Now</button></div>
+  <div class="card"><img src="peanut.webp" ><h4>Peanut</h4><p>Crunchy roasted peanuts – a great source of protein and energy.</p><button class="btn">Buy Now</button></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <center><h3>Our Team</h3></center>
+  <div class="testimonial">
+    <div class="card"><img src="priya1.webp" alt="Priya"><p>"Outstanding quality! Fresh and tasty."</p><strong>- Priya</strong></div>
+    <div class="card"><img src="arjun.webp" alt="Arjun"><p>"Eco packaging and fast delivery!"</p><strong>- Arjun</strong></div>
+    <div class="card"><img src="meena.webp" alt="Meena"><p>"My go-to for dry fruits! Highly recommend."</p><strong>- Meena</strong></div>
+   <div class="card"><img src="ramesh.webp" alt="Ramesh"><p>"Excellent quality and freshness."</p><strong>- Rakesh</strong></div>
+    <div class="card"><img src="latha.webp" alt="Latha"><p>"Love the freshness and service!"</p><strong>- Latha</strong></div>
+  </div>
+</section>
+<h2>Contact</h2>
+<section id="contact" class="two-col">
+  <div class="left-col">
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Phone" required>
+      <input type="text" placeholder="Subject" required>
+      <center><button class="btn" type="submit">Send</button></center>
+    </form>
+  </div>
+  <div class="right-col">
+    <h3>NutZone</h3>
+    <p><a href="#" style="color:var(--primary)">www.nutzone.com</a></p>
+    <p>456 Health Blvd, Nutri City</p>
+    <p><a href="tel:+919876543210" style="color:var(--primary)">+91-9876543210</a></p>
+    <div>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2025 NutZone | All rights reserved.</footer>
+<div class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Back to top">↑</div>
+
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+  window.onscroll = () => {
+    document.querySelector(".back-to-top").style.display =
+      window.scrollY > 100 ? "block" : "none";
+  };
+</script>
+
+</body>
+</html>
